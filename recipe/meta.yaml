@@ -1,5 +1,5 @@
 {% set name = "voluptuous-serialize" %}
-{% set version = "2.6.0" %}
+{% set version = "2.7.0" %}
 
 
 package:
@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/voluptuous-serialize-{{ version }}.tar.gz
-  sha256: 79acdc58239582a393144402d827fa8efd6df0f5350cdc606d9242f6f9bca7c4
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: d0da959f2fd93c8f1eb779c5d116231940493b51020c2c1026bab76eb56cd09e
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
