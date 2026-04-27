@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: voluptuous-serialize
+  version: "2.7.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: d0da959f2fd93c8f1eb779c5d116231940493b51020c2c1026bab76eb56cd09e
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - voluptuous
+
+tests:
+  - python:
+      imports:
+        - voluptuous_serialize
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Experiment to convert voluptuous schemas to JSON
+  description: |
+    Convert Voluptuous schemas to dictionaries so they can be serialized.
+  homepage: https://github.com/home-assistant-libs/voluptuous-serialize
+  repository: https://github.com/home-assistant-libs/voluptuous-serialize
+  documentation: https://github.com/home-assistant-libs/voluptuous-serialize
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
